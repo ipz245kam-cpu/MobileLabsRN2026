@@ -1,21 +1,35 @@
-/**
- * Copyright © 2023 650 Industries.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
+import './sweet/setUpJsLogger.fx';
+import './polyfill';
 
-import './location/install';
+export type * from './ts-declarations/global';
 
-import '@expo/metro-runtime/rsc/runtime';
+export { EventEmitter, type EventSubscription } from './EventEmitter';
+export { NativeModule } from './NativeModule';
+export { SharedObject } from './SharedObject';
+export { SharedRef } from './SharedRef';
 
-if (__DEV__) {
-  require('./metroServerLogs').captureStackForServerLogs();
+export { default as Platform } from './Platform';
+export { default as uuid } from './uuid';
 
-  // TODO: Remove when fixed upstream. Expected in RN 0.82.
-  // https://github.com/facebook/react-native/commit/c4082c9ce208a324c2d011823ca2ba432411aafc
-  require('./promiseRejectionTracking').enablePromiseRejectionTracking();
+export type { ProxyNativeModule } from './NativeModulesProxy.types';
+export { requireNativeViewManager } from './NativeViewManagerAdapter';
 
-  // @ts-expect-error: TODO: Remove this when we remove the log box.
-  globalThis.__expo_dev_resetErrors = require('./error-overlay/LogBox').default.clearAllLogs;
-}
+export * from './requireNativeModule';
+export * from './registerWebModule';
+export * from './TypedArrays.types';
+
+export * from './PermissionsInterface';
+export * from './PermissionsHook';
+
+export * from './Refs';
+
+export * from './hooks/useReleasingSharedObject';
+export * from './reload';
+
+// Errors
+export { CodedError } from './errors/CodedError';
+export { UnavailabilityError } from './errors/UnavailabilityError';
+
+// Deprecated
+export { LegacyEventEmitter } from './LegacyEventEmitter';
+export { default as NativeModulesProxy } from './NativeModulesProxy';
